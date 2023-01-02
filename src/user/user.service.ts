@@ -22,15 +22,16 @@ export class UserService {
   }
 
   update(UpdateUserDto: UpdateUserDto, userId: number) {
-    return { body: UpdateUserDto, userId };
+    return this.userRepo.update(userId, UpdateUserDto);
+    // return { body: UpdateUserDto, userId };
   }
 
   // show(param: { userId: number })
   show(userId: number) {
-    return userId;
+    return this.userRepo.findOne({ where: { id: userId } });
   }
 
   deleteUser(userId: number) {
-    return userId;
+    return this.userRepo.delete(userId);
   }
 }
